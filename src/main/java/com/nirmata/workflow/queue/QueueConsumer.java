@@ -18,6 +18,7 @@ package com.nirmata.workflow.queue;
 import com.google.common.annotations.VisibleForTesting;
 import com.nirmata.workflow.admin.WorkflowManagerState;
 import java.io.Closeable;
+import java.util.concurrent.TimeUnit;
 
 public interface QueueConsumer extends Closeable
 {
@@ -30,4 +31,6 @@ public interface QueueConsumer extends Closeable
 
     @VisibleForTesting
     void debugValidateClosed();
+    
+    public void closeGraceFully(long timeOut, TimeUnit timeUnit);
 }

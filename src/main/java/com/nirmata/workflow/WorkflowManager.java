@@ -25,6 +25,7 @@ import com.nirmata.workflow.models.TaskId;
 import org.apache.curator.framework.CuratorFramework;
 import java.io.Closeable;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Main API - create via {@link WorkflowManagerBuilder}
@@ -140,4 +141,14 @@ public interface WorkflowManager extends Closeable
      * @return new WorkflowListenerManager
      */
     WorkflowListenerManager newWorkflowListenerManager();
+    
+    /**
+     *  Attempt to stop executing new tasks. 
+     *  Already running tasks will continue till timeout occurs.
+     *  If tasks running are supposed to take long time, its better to give bigger timeOut value.
+     *  
+     * @param timeOut
+     * @param timeUnit the timeunit of timeout (e.g SECONDS, MINUTES)
+     */
+    void gracefulShutdown(long timeOut, TimeUnit timeUnit);
 }

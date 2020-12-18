@@ -355,4 +355,19 @@ public class SimpleQueue implements Closeable, QueueConsumer
         }
         return 0;
     }
+    
+    @Override
+	public void closeGraceFully(long timeOut, TimeUnit timeUnit) {
+		 if ( started.compareAndSet(true, false) )
+	        {
+	            executorService.shutdown();
+	            try {
+					executorService.awaitTermination(timeOut, timeUnit);
+				} catch (InterruptedException e) {
+					log.error("Exception occurred while waiting for running tasks to complete", e);
+					Thread.currentThread().interrupt();
+				}
+	        }
+		
+	}
 }
