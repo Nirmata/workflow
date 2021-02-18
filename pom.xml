@@ -14,7 +14,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <curator-version>4.2.0</curator-version>
-        <jackson-version>2.10.1</jackson-version>
+        <jackson-version>2.12.1</jackson-version>
         <testng-version>6.10</testng-version>
         <slf4j-version>1.7.22</slf4j-version>
         <jgrapht-version>1.0.1</jgrapht-version>
